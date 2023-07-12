@@ -21,6 +21,22 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 //@EnableWebSecurity(debug = true) //FIXME - убрать debug
 public class SecurityConfig {
+    private static final String[] AUTH_WHITELIST = {
+//            swagger urls
+            "/v2/api-docs",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**",
+            "/v3/api-docs/**",
+            "/swagger-ui/**",
+//            other urls
+            "/api/v1/unsecured",
+            "/api/v1/register",
+            "/api/v1/login"
+    };
     @Bean
     public SecurityFilterChain securityFilterChain(JwtRequestFilter filter, HttpSecurity httpSecurity) throws Exception {
 
@@ -36,10 +52,8 @@ public class SecurityConfig {
                 })
 
                 //TODO - вынести endpoints в константы
-                .authorizeHttpRequests(req -> req.requestMatchers("/api/v1/register", "/api/v1/login").permitAll())
-
                 .authorizeHttpRequests(req -> req.requestMatchers("/api/v1/secured").authenticated())   //test
-                .authorizeHttpRequests(req -> req.requestMatchers("/api/v1/unsecured").permitAll())     //test
+                .authorizeHttpRequests(req -> req.requestMatchers(AUTH_WHITELIST).permitAll())     //test
 
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
