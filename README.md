@@ -25,7 +25,7 @@ ___
 ### Запуск проекта:
 - Клонировать репозиторий `git clone https://github.com/basterrus/geekbrains_agile_study_market.git`
 - Перейти в папку с проектом `cd geekbrains_agile_study_market`   
-- После старта проекта документация swagger доступна по адресу `http://127.0.0.1:8888/api/v1/swagger-ui/index.html`           
+- После старта проекта документация swagger доступна по адресу `http://127.0.0.1:8888/swagger-ui/index.html`           
 **В процессе наполнения**
 
 
