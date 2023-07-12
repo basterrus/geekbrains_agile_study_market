@@ -21,8 +21,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 //@EnableWebSecurity(debug = true) //FIXME - убрать debug
 public class SecurityConfig {
-    private static final String[] AUTH_WHITELIST = {
-//            swagger urls
+
+    private static final String[] AUTH_WHITELIST_SWAGGER={
             "/v2/api-docs",
             "/swagger-resources",
             "/swagger-resources/**",
@@ -31,12 +31,19 @@ public class SecurityConfig {
             "/swagger-ui.html",
             "/webjars/**",
             "/v3/api-docs/**",
-            "/swagger-ui/**",
-//            other urls
-            "/unsecured",
-            "/register",
-            "/login"
+            "/swagger-ui/**"
     };
+
+    private static final String[] AUTH_WHITELIST_AUTH = {
+            "/api/v1/unsecured/**",
+            "/api/v1/register/**",
+            "/api/v1/login/**"
+    };
+
+    private static final String[] AUTH_WHITELIST_PRODUCT={
+            "/api/v1/products/**"
+    };
+
     @Bean
     public SecurityFilterChain securityFilterChain(JwtRequestFilter filter, HttpSecurity httpSecurity) throws Exception {
 
@@ -53,8 +60,9 @@ public class SecurityConfig {
 
                 //TODO - вынести endpoints в константы
                 .authorizeHttpRequests(req -> req.requestMatchers("/api/v1/secured").authenticated())   //test
-                .authorizeHttpRequests(req -> req.requestMatchers(AUTH_WHITELIST).permitAll())     //test
-
+                .authorizeHttpRequests(req -> req.requestMatchers(AUTH_WHITELIST_SWAGGER).permitAll())
+                .authorizeHttpRequests(req -> req.requestMatchers(AUTH_WHITELIST_AUTH).permitAll())
+                .authorizeHttpRequests(req -> req.requestMatchers(AUTH_WHITELIST_PRODUCT).permitAll())
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
 
