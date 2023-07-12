@@ -33,9 +33,9 @@ public class SecurityConfig {
             "/v3/api-docs/**",
             "/swagger-ui/**",
 //            other urls
-            "/api/v1/unsecured",
-            "/api/v1/register",
-            "/api/v1/login"
+            "/unsecured",
+            "/register",
+            "/login"
     };
     @Bean
     public SecurityFilterChain securityFilterChain(JwtRequestFilter filter, HttpSecurity httpSecurity) throws Exception {

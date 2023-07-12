@@ -8,6 +8,7 @@ import com.geekbrains.shop.entities.User;
 import com.geekbrains.shop.exceptions.auth.RegistrationException;
 import com.geekbrains.shop.services.UserService;
 import com.geekbrains.shop.utils.JwtTokenUtil;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
+@Tag(name="Authentication")
 public class AuthenticationController {
 
     private final UserService userService;

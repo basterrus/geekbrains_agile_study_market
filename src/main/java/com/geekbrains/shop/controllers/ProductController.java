@@ -6,6 +6,8 @@ import com.geekbrains.shop.entities.Category;
 import com.geekbrains.shop.entities.Product;
 import com.geekbrains.shop.services.CategoryService;
 import com.geekbrains.shop.services.ProductService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +15,9 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/products")
+@RequestMapping("/api/v1/products")
+@SecurityRequirement(name="Bearer Auth")
+@Tag(name="Products")
 public class ProductController {
 
     private final ProductService productService;
