@@ -15,3 +15,5 @@ logging:
       geekbrains:
         shop: DEBUG
 
+cart-service:
+  cart-prefix: study_market_

@@ -16,7 +16,10 @@ public class CartItem {
     private int quantity;
     private BigDecimal pricePerProduct;
     private BigDecimal price;
-    private String image;
+
+    public CartItem(Long id, String title, int quantity, int price, int price1) {
+    }
+//    private String image;
 
     public void changeQuantity(int delta) {
         quantity += delta;

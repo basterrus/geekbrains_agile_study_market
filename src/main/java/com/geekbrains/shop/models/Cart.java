@@ -1,6 +1,7 @@
 package com.geekbrains.shop.models;
 
 
+import com.geekbrains.shop.entities.Product;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -43,7 +44,7 @@ public class Cart {
     }
     public void clear() {
         items.clear();
-        totalPrice = BigDecimal.ZERO;
+        totalPrice = BigDecimal.valueOf(0);
     }
     public void removeAllQuantity(Long id) {
         if (items.removeIf(p -> p.getProductId().equals(id))) {
@@ -56,7 +57,6 @@ public class Cart {
         totalPrice = items.stream().map(CartItem::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add).setScale(2, RoundingMode.HALF_UP);
     }
     private CartItem mapToCartItem(Product product) {
-        return new CartItem(product.getId(), product.getTitle(), 1, product.getPrice(), product.getPrice(), product.getImage());
+        return new CartItem(product.getId(), product.getTitle(), 1, product.getPrice(), product.getPrice());
     }
-
 }
