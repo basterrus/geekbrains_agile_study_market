@@ -19,7 +19,9 @@ public class Role {
     private Long id;
 
     @Column(name = "name")
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private RoleEnum name;
+
 
     @CreationTimestamp
     @Column(name = "created_at")
@@ -29,7 +31,7 @@ public class Role {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    public Role(String role){
+    public Role(RoleEnum role){
         this.name=role;
     }
 }
