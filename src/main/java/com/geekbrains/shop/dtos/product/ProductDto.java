@@ -1,4 +1,4 @@
-package com.geekbrains.shop.dtos;
+package com.geekbrains.shop.dtos.product;
 
 public class ProductDto {
 
@@ -7,6 +7,16 @@ public class ProductDto {
     private String title;
     private int price;
     private String categoryTitle;
+
+    private int quantity;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public Long getId() {
         return id;
