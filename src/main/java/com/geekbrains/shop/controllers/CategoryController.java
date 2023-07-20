@@ -1,11 +1,10 @@
 package com.geekbrains.shop.controllers;
 
-import com.geekbrains.shop.dtos.CategoryDto;
+import com.geekbrains.shop.dtos.category.CategoryDto;
 import com.geekbrains.shop.entities.Category;
 import com.geekbrains.shop.services.CategoryService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
