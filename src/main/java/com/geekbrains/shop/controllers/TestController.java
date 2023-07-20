@@ -17,4 +17,9 @@ public class TestController {
     public String unsecured(){
         return "unsecured";
     }
+
+    @GetMapping("/api/v1/admin-auth")
+    public String adminAuth(){
+        return "has role ADMIN";
+    }
 }

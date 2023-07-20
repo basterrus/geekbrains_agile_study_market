@@ -1,4 +1,4 @@
-package com.geekbrains.shop.dtos;
+package com.geekbrains.shop.dtos.category;
 
 public class CategoryDto {
 

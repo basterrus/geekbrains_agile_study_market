@@ -1,7 +1,7 @@
 package com.geekbrains.shop.controllers;
 
 import com.geekbrains.shop.converters.ProductConverter;
-import com.geekbrains.shop.dtos.ProductDto;
+import com.geekbrains.shop.dtos.product.ProductDto;
 import com.geekbrains.shop.entities.Category;
 import com.geekbrains.shop.entities.Product;
 import com.geekbrains.shop.services.CategoryService;

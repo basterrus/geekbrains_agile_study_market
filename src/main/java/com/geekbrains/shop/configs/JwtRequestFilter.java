@@ -1,23 +1,26 @@
 package com.geekbrains.shop.configs;
 
 
-import com.geekbrains.shop.exceptions.TokenException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.geekbrains.shop.models.TokenErrorAnswer;
 import com.geekbrains.shop.utils.JwtTokenUtil;
-import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.stream.Collectors;
 
 @Component
@@ -37,10 +40,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             jwt = authHeader.substring(7);
             try {
                 username = jwtTokenUtil.getUsernameFromToken(jwt);
-            } catch (ExpiredJwtException e) {
-                log.debug("The token is expired");
-                //TODO  - вернуть на клиент внятный ответ
-                throw new TokenException(e.getMessage());
+            } catch (JwtException e) {
+                log.debug("Token error");
+                setTokenErrorAnswer(response);
             }
         }
 
@@ -51,4 +53,15 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         filterChain.doFilter(request, response);
     }
+
+    private  void setTokenErrorAnswer(HttpServletResponse response) throws IOException {
+        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        PrintWriter printWriter = response.getWriter();
+        ObjectMapper objectMapper = new ObjectMapper();
+        TokenErrorAnswer tokenExpired = new TokenErrorAnswer("Token error");
+        printWriter.write(objectMapper.writeValueAsString(tokenExpired));
+    }
+
+
 }

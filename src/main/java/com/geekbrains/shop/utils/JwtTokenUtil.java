@@ -26,15 +26,17 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class JwtTokenUtil {
 
+    private final  String CLAIM_ROLE="roles";
+
     private final JwtSecretParams jwtSecretParams;
 
     public String generateToken(User user) {
         Map<String, Object> claims = new HashMap<>();
 
         List<String> rolesList = user.getRoles().stream()
-                .map(Role::getName)
+                .map(role -> role.getName().getName())
                 .collect(Collectors.toList());
-        claims.put("roles", rolesList);
+        claims.put(CLAIM_ROLE, rolesList);
 
         Date issuedDate = new Date();
         Date expiredDate = new Date(issuedDate.getTime() + jwtSecretParams.getLifetime());
@@ -49,13 +51,34 @@ public class JwtTokenUtil {
                 .compact();
     }
 
+    public String generateToken(UserDetails userDetails) {
+        Map<String, Object> claims = new HashMap<>();
+
+        List<String> rolesList = userDetails.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList());
+        claims.put(CLAIM_ROLE, rolesList);
+
+        Date issuedDate = new Date();
+        Date expiredDate = new Date(issuedDate.getTime() + jwtSecretParams.getLifetime());
+        SecretKey key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecretParams.getSecret()));
+
+        return Jwts.builder()
+                .setClaims(claims)
+                .setSubject(userDetails.getUsername())
+                .setIssuedAt(issuedDate)
+                .setExpiration(expiredDate)
+                .signWith(key, SignatureAlgorithm.HS512)
+                .compact();
+    }
+
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
     }
 
     @SuppressWarnings("unchecked")
     public List<String> getRoles(String token) {
-        return getClaimFromToken(token,  claims -> claims.get("roles", List.class));
+        return getClaimFromToken(token,  claims -> claims.get(CLAIM_ROLE, List.class));
     }
 
     private <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
@@ -72,5 +95,4 @@ public class JwtTokenUtil {
                 .parseClaimsJws(token)
                 .getBody();
     }
-
 }
