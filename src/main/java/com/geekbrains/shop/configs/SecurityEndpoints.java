@@ -33,6 +33,15 @@ public class SecurityEndpoints {
             "/api/v1/users/**"
     };
 
+     static final String[] AUTH_WHITELIST_CARTS ={
+             "/api/v1/cart"
+     };
+
+     static final String[] AUTH_WHITELIST_CATEGORIES ={
+             "/api/v1/categories"
+     };
+
+
      // hasRole("MANAGER")
      static final String[] AUTH_REQUIRE_MANAGER_ROLE = {
     };

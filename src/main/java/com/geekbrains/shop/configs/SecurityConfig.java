@@ -71,6 +71,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(req -> req.requestMatchers(AUTH_WHITELIST_SWAGGER).permitAll())
                 .authorizeHttpRequests(req -> req.requestMatchers(AUTH_WHITELIST_AUTH).permitAll())
                 .authorizeHttpRequests(req -> req.requestMatchers(AUTH_WHITELIST_PRODUCT).permitAll())
+                .authorizeHttpRequests(req -> req.requestMatchers(AUTH_WHITELIST_CARTS).permitAll())
+                .authorizeHttpRequests(req -> req.requestMatchers(AUTH_WHITELIST_CATEGORIES).permitAll())
                 .authorizeHttpRequests(req -> req.requestMatchers(AUTH_REQUIRE_ADMIN_ROLE).hasRole("ADMIN")) // [/api/v1/users]
                 .authorizeHttpRequests(req -> req.requestMatchers("/api/v1/admin-auth").hasAnyRole("ADMIN")) //test
                 .authorizeHttpRequests(req -> req.anyRequest().permitAll())
