@@ -41,7 +41,12 @@ public class SecurityConfig {
     };
 
     private static final String[] AUTH_WHITELIST_PRODUCT={
-            "/api/v1/products/**"
+            "/api/v1/products/**",
+
+    };
+
+    private static final String[] AUTH_WHITELIST_CATEGORIES={
+            "/api/v1/categories/**"
     };
 
     @Bean
@@ -63,6 +68,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(req -> req.requestMatchers(AUTH_WHITELIST_SWAGGER).permitAll())
                 .authorizeHttpRequests(req -> req.requestMatchers(AUTH_WHITELIST_AUTH).permitAll())
                 .authorizeHttpRequests(req -> req.requestMatchers(AUTH_WHITELIST_PRODUCT).permitAll())
+                .authorizeHttpRequests(req -> req.requestMatchers(AUTH_WHITELIST_CATEGORIES).permitAll())
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
 
