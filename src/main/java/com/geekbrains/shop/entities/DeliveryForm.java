@@ -1,8 +1,6 @@
 package com.geekbrains.shop.entities;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,36 +9,38 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "delivery_forms")
 @Getter
 @Setter
-public class Order {
+public class DeliveryForm {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id")
+    @Column(name = "delivery_id")
     private Long id;
 
-    @Column(name = "order_date")
-    private LocalDate orderDate;
+    @Column(name = "full_name")
+    private String fullName;
+
+
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "phone_number")
+    private String phoneNumber;
+    @Column(name = "delivery_date")
+    private LocalDate deliveryDate;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "delivery_form_id")
-    private DeliveryForm deliveryForm;
+    @JoinColumn(name = "order_id")
+    private Order order;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
 
-    @OneToMany
-    private List<OrderProduct> ordersProducts = new ArrayList<>();
 
 }

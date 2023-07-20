@@ -10,6 +10,10 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.geekbrains.shop.entities.Product;
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
+
 @Data
 @Slf4j
 public class Cart {
