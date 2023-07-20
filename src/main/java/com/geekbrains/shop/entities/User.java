@@ -29,8 +29,10 @@ public class User {
     private String email;
 
     @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
+            CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.REFRESH,
+            CascadeType.PERSIST
     })
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),

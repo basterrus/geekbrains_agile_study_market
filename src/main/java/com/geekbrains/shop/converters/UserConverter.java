@@ -1,15 +1,23 @@
 package com.geekbrains.shop.converters;
 
-import com.geekbrains.shop.dtos.user.UserDto;
-import com.geekbrains.shop.entities.Role;
+import com.geekbrains.shop.dtos.UserDto;
 import com.geekbrains.shop.entities.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class UserConverter {
-    public UserDto entityToDto(User user, String token) {
 
-        return new UserDto(user.getUsername(), user.getEmail(), user.getRoles().stream()
-                .map(Role::getName).toList(), token);
+    private final RoleConverter roleConverter;
+
+    public UserDto entityToDto(User user) {
+
+        return new UserDto(user.getId(), user.getUsername(), user.getEmail(),
+                user.getRoles()
+                        .stream()
+                        .map(roleConverter::entityToDto)
+                        .toList()
+                );
     }
 }
