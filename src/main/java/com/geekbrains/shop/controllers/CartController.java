@@ -3,6 +3,7 @@ package com.geekbrains.shop.controllers;
 import com.geekbrains.shop.converters.CartConverter;
 import com.geekbrains.shop.dtos.cart.CartDto;
 
+import com.geekbrains.shop.repositories.ProductRepository;
 import com.geekbrains.shop.services.CartService;
 import com.geekbrains.shop.utils.StringResponse;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,7 @@ import java.util.UUID;
     @RequestMapping("/api/v1/cart")
 @Slf4j
 public class CartController {
-//    private final ProductRepository productRepository;
+    private final ProductRepository productRepository;
     private final CartConverter cartConverter;
     private final CartService cartService;
 
