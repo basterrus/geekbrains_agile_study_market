@@ -1,0 +1,93 @@
+<!doctype html>
+
+<html ng-app="market">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="productListEditor.js"></script>
+</head>
+
+<body>
+
+<div class="container" ng-controller="indexController">
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link" href="http://localhost:8888/index.html">Домашняя</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="http://localhost:8888/productList.html">Товары</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="http://localhost:8888/cart.html">Корзина</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" href="#">Заказы</a>
+        </li>
+    </ul>
+
+    <table>
+        <tr>
+            <td><h1>Интернет магазин</h1></td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td><h3>Редактор списка товаров</h3></td>
+        </tr>
+    </table>
+
+    <form novalidate ng-submit="addProductToList()">
+        <div class="form-row">
+            <div class="col-7">
+                <input type="text" class="form-control" placeholder="Название" ng-model="newProduct.title">
+            </div>
+            <div class="col">
+                <input type="number" class="form-control" placeholder="Цена" ng-model="newProduct.price">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Категория" ng-model="newProduct.categoryTitle">
+            </div>
+            <div>
+                <input type="number" class="form-control" placeholder="количество" ng-model="newProduct.quantity">
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-primary" ng-click="addProductToList()">добавить</button>
+            </div>
+        </div>
+    </form>
+    <p></p>
+
+    <table class="table table-hover" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>ID</td>
+            <td>Название</td>
+            <td>Цена</td>
+            <td>Категория</td>
+            <td></td>
+        </tr>
+        <tbody>
+        <tr ng-repeat="p in productsList">
+            <td>{{p.id}}</td>
+            <td>{{p.title}}</td>
+            <td>{{p.price}}</td>
+            <td>{{p.categoryTitle}}</td>
+            <td>
+                <!--                <button type="button" class="btn-primary" ng-click="showProductInfo(p.id)">Info</button>-->
+                <!--                <button type="button" class="btn-danger" ng-click="deleteProductById(p.id)">Delete</button>-->
+                <button type="button" class="btn btn-primary" ng-click="addToCart(p.id)">изменить</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger" ng-click="deleteProductById(p.id)">удалить</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>
