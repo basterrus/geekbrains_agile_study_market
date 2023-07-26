@@ -23,7 +23,7 @@
             <a class="nav-link" href="http://localhost:8888/productList.html">Товары</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="http://localhost:8888/cart.html">Козина</a>
+            <a class="nav-link active" href="http://localhost:8888/cart.html">Корзина</a>
         </li>
         <li class="nav-item">
             <a class="nav-link disabled" href="#">Заказы</a>
@@ -73,7 +73,8 @@
             <td></td>
             <td>{{cart.totalPrice}}</td>
             <td>
-                <button type="button" class="btn-danger" ng-click="cleanCart()">Очистить корзину</button>
+                <button type="button" class="btn btn-danger" ng-click="cleanCart()">Очистить корзину</button>
+                <button type="button" class="btn btn-success" ng-click="cleanCart()">Оформить заказ</button>
             </td>
         </tr>
         </tbody>
