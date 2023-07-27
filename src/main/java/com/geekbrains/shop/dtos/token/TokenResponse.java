@@ -1,4 +1,4 @@
-package com.geekbrains.shop.models;
+package com.geekbrains.shop.dtos.token;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,17 +1,16 @@
 package com.geekbrains.shop.utils;
 
 import com.geekbrains.shop.configs.JwtSecretParams;
-import com.geekbrains.shop.entities.Role;
 import com.geekbrains.shop.entities.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -27,8 +26,13 @@ import java.util.stream.Collectors;
 public class JwtTokenUtil {
 
     private final  String CLAIM_ROLE="roles";
-
     private final JwtSecretParams jwtSecretParams;
+    private  SecretKey secretKey;
+
+    @PostConstruct
+    private void init(){
+        secretKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecretParams.getSecret()));
+    }
 
     public String generateToken(User user) {
         Map<String, Object> claims = new HashMap<>();
@@ -40,35 +44,35 @@ public class JwtTokenUtil {
 
         Date issuedDate = new Date();
         Date expiredDate = new Date(issuedDate.getTime() + jwtSecretParams.getLifetime());
-        SecretKey key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecretParams.getSecret()));
+
 
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(user.getUsername())
                 .setIssuedAt(issuedDate)
                 .setExpiration(expiredDate)
-                .signWith(key, SignatureAlgorithm.HS512)
+                .signWith(secretKey, SignatureAlgorithm.HS512)
                 .compact();
     }
 
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(Authentication authentication) {
         Map<String, Object> claims = new HashMap<>();
 
-        List<String> rolesList = userDetails.getAuthorities().stream()
+        List<String> rolesList = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
         claims.put(CLAIM_ROLE, rolesList);
 
         Date issuedDate = new Date();
         Date expiredDate = new Date(issuedDate.getTime() + jwtSecretParams.getLifetime());
-        SecretKey key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecretParams.getSecret()));
+
 
         return Jwts.builder()
                 .setClaims(claims)
-                .setSubject(userDetails.getUsername())
+                .setSubject(authentication.getName())
                 .setIssuedAt(issuedDate)
                 .setExpiration(expiredDate)
-                .signWith(key, SignatureAlgorithm.HS512)
+                .signWith(secretKey, SignatureAlgorithm.HS512)
                 .compact();
     }
 
@@ -87,12 +91,12 @@ public class JwtTokenUtil {
     }
 
     private Claims getAllClaimsFromToken(String token) {
-        SecretKey key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecretParams.getSecret()));
 
         return Jwts.parserBuilder()
-                .setSigningKey(key)
+                .setSigningKey(secretKey)
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
     }
+
 }

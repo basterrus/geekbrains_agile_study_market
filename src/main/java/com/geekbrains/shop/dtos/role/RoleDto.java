@@ -1,6 +1,5 @@
-package com.geekbrains.shop.dtos;
+package com.geekbrains.shop.dtos.role;
 
-import com.geekbrains.shop.entities.RoleEnum;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;

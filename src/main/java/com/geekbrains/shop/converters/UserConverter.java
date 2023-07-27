@@ -1,6 +1,6 @@
 package com.geekbrains.shop.converters;
 
-import com.geekbrains.shop.dtos.UserDto;
+import com.geekbrains.shop.dtos.user.UserDto;
 import com.geekbrains.shop.entities.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

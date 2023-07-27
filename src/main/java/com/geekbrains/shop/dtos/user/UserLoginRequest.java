@@ -1,11 +1,11 @@
-package com.geekbrains.shop.models;
+package com.geekbrains.shop.dtos.user;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class LoginRequest {
+public class UserLoginRequest {
     @NotBlank
     private String username;
 

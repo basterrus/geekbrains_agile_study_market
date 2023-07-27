@@ -48,10 +48,4 @@ public class User {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    public User(String username, String password){
-        this.username=username;
-        this.password=password;
-    }
-
-
 }

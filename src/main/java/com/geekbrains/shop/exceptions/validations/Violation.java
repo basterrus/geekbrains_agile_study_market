@@ -1,11 +1,15 @@
 package com.geekbrains.shop.exceptions.validations;
 
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import com.geekbrains.shop.exceptions.ErrorMessage;
+import lombok.Getter;
 
-@Data
-@RequiredArgsConstructor
-public class Violation {
+
+@Getter
+public class Violation extends ErrorMessage {
     private final String fieldName;
-    private final String message;
+
+    public Violation(String message, String fieldName){
+        super(message);
+        this.fieldName=fieldName;
+    }
 }

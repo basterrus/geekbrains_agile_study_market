@@ -2,7 +2,7 @@ package com.geekbrains.shop.configs;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.geekbrains.shop.models.TokenErrorAnswer;
+import com.geekbrains.shop.dtos.token.TokenErrorResponse;
 import com.geekbrains.shop.utils.JwtTokenUtil;
 import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
@@ -59,7 +59,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         PrintWriter printWriter = response.getWriter();
         ObjectMapper objectMapper = new ObjectMapper();
-        TokenErrorAnswer tokenExpired = new TokenErrorAnswer("Token error");
+        TokenErrorResponse tokenExpired = new TokenErrorResponse("Token error");
         printWriter.write(objectMapper.writeValueAsString(tokenExpired));
     }
 
