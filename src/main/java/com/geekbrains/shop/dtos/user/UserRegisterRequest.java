@@ -1,4 +1,4 @@
-package com.geekbrains.shop.models;
+package com.geekbrains.shop.dtos.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class RegistrationRequest {
+public class UserRegisterRequest {
 
     @NotBlank
     private String username;

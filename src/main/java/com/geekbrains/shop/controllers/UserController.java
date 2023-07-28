@@ -1,14 +1,10 @@
 package com.geekbrains.shop.controllers;
 
 import com.geekbrains.shop.converters.UserConverter;
-import com.geekbrains.shop.dtos.RoleDto;
-import com.geekbrains.shop.dtos.UserDto;
-import com.geekbrains.shop.entities.Role;
+import com.geekbrains.shop.dtos.token.TokenResponse;
+import com.geekbrains.shop.dtos.user.UserDto;
+import com.geekbrains.shop.dtos.user.UserRegisterResponse;
 import com.geekbrains.shop.entities.User;
-import com.geekbrains.shop.exceptions.RoleNotFoundException;
-import com.geekbrains.shop.models.RegisterResponse;
-import com.geekbrains.shop.models.TokenResponse;
-import com.geekbrains.shop.services.RoleService;
 import com.geekbrains.shop.services.UserService;
 import com.geekbrains.shop.utils.JwtTokenUtil;
 import jakarta.validation.Valid;
@@ -19,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,8 +52,8 @@ public class UserController {
 
     // присвоение новой роли пользователю
     @PutMapping("/add-role")
-    public RegisterResponse setRole(@Valid @RequestBody UserDto userDto) {
+    public UserRegisterResponse setRole(@Valid @RequestBody UserDto userDto) {
         User user = userService.addNewRole(userDto);
-        return new RegisterResponse(userConverter.entityToDto(user), new TokenResponse(jwtTokenUtil.generateToken(user)));
+        return new UserRegisterResponse(userConverter.entityToDto(user), new TokenResponse(jwtTokenUtil.generateToken(user)));
     }
 }

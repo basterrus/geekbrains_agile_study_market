@@ -31,7 +31,4 @@ public class Role {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    public Role(RoleEnum role){
-        this.name=role;
-    }
 }

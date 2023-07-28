@@ -23,8 +23,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = {RegistrationException.class})
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public AppError registrationException(RegistrationException registrationException){
-        log.debug("Registration error: {}", registrationException.getMessage());
-        return new AppError(HttpStatus.BAD_REQUEST.value(), registrationException.getMessage());
+        log.debug("Registration error: {}", registrationException.getErrors());
+        return new AppError(HttpStatus.BAD_REQUEST.value(), registrationException.getErrors());
     }
 
 
