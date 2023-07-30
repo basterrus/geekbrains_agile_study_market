@@ -28,13 +28,19 @@
         <li class="nav-item">
             <a class="nav-link disabled" href="#">Заказы</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" href="#">Админ панель</a>
+        </li>
     </ul>
 
     <table>
         <tr>
             <td><h1>Интернет магазин</h1></td>
             <td>
-                <button type="button" class="btn-primary">Вход</button>
+                <button type="button" class="btn btn-primary" onclick="document.location='http://localhost:8888/register.html'">Регистрация</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" onclick="document.location='http://localhost:8888/auth.html'">Вход</button>
             </td>
         </tr>
     </table>
@@ -74,7 +80,7 @@
             <td>{{cart.totalPrice}}</td>
             <td>
                 <button type="button" class="btn btn-danger" ng-click="cleanCart()">Очистить корзину</button>
-                <button type="button" class="btn btn-success" ng-click="cleanCart()">Оформить заказ</button>
+                <button type="button" class="btn btn-success" ng-click="">Оформить заказ</button>
             </td>
         </tr>
         </tbody>

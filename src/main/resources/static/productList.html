@@ -28,11 +28,20 @@
         <li class="nav-item">
             <a class="nav-link disabled" href="#">Заказы</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" href="#">Админ панель</a>
+        </li>
     </ul>
 
     <table>
         <tr>
             <td><h1>Интернет магазин</h1></td>
+            <td>
+                <button type="button" class="btn btn-primary" onclick="document.location='http://localhost:8888/register.html'">Регистрация</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" onclick="document.location='http://localhost:8888/auth.html'">Вход</button>
+            </td>
         </tr>
     </table>
     <table>
@@ -45,18 +54,6 @@
             </td>
         </tr>
     </table>
-
-    <form>
-        <div class="form-group">
-            <label for="exampleFormControlSelect1">фильрт по категориям</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-                <option>Food</option>
-                <option>Electronic</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Показать</button>
-    </form>
-
     <table class="table table-hover" cellpadding="0" cellspacing="0">
         <tr>
             <td>ID</td>

@@ -44,19 +44,19 @@
     <form novalidate ng-submit="addProductToList()">
         <div class="form-row">
             <div class="col-7">
-                <input type="text" class="form-control" placeholder="Название" ng-model="newProduct.title">
+                <input type="text" class="form-control" placeholder="Название" ng-model="newProduct.title"/>
             </div>
             <div class="col">
-                <input type="number" class="form-control" placeholder="Цена" ng-model="newProduct.price">
+                <input type="number" class="form-control" placeholder="Цена" ng-model="newProduct.price"/>
             </div>
             <div class="col">
-                <input type="text" class="form-control" placeholder="Категория" ng-model="newProduct.categoryTitle">
+                <input type="text" class="form-control" placeholder="Категория" ng-model="newProduct.categoryTitle"/>
             </div>
             <div>
-                <input type="number" class="form-control" placeholder="количество" ng-model="newProduct.quantity">
+                <input type="number" class="form-control" placeholder="количество" ng-model="newProduct.quantity"/>
             </div>
             <div class="col">
-                <button type="button" class="btn btn-primary" ng-click="addProductToList()">добавить</button>
+                <button type="submit" class="btn btn-primary" ng-click="addProductToList()">добавить</button>
             </div>
         </div>
     </form>

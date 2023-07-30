@@ -7,8 +7,7 @@ angular.module('market', []).controller('indexController', function ($scope, $ht
     }
 
     $scope.addProductToList = function () {
-        $http.post('http://localhost:8888/api/v1/products/', $scope.newProduct).then(function (response) {
-            console.log($scope.newProduct);
+        $http.post('http://localhost:8888/api/v1/products', $scope.newProduct).then(function (response) {
             $scope.loadProducts();
         });
     }

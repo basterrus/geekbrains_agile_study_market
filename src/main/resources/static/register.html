@@ -9,7 +9,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
-    <script src="index.js"></script>
+    <script src="register.js"></script>
 </head>
 
 <body>
@@ -28,22 +28,28 @@
         <li class="nav-item">
             <a class="nav-link disabled" href="#">Заказы</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link disabled" href="#">Админ панель</a>
-        </li>
     </ul>
 
     <table>
         <tr>
             <td><h1>Интернет магазин</h1></td>
-            <td>
-                <button type="button" class="btn btn-primary" onclick="document.location='http://localhost:8888/register.html'">Регистрация</button>
-            </td>
-            <td>
-                <button type="button" class="btn btn-primary" onclick="document.location='http://localhost:8888/auth.html'">Вход</button>
-            </td>
         </tr>
     </table>
+    <form>
+        <div class="form-group">
+            <label>Имя пользователя</label>
+            <input type="text" class="form-control" ng-model="newUser.username"/>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" ng-model="newUser.email" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" ng-model="newUser.password" id="exampleInputPassword1">
+        </div>
+        <button type="submit" class="btn btn-primary" ng-click="addUser()">Регистрация</button>
+    </form>
 
 </div>
 </body>
