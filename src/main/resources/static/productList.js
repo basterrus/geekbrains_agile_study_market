@@ -12,13 +12,13 @@ angular.module('market', []).controller('indexController', function ($scope, $ht
         });
     }
 
-    $scope.createCart = function (){
-        $http.get('http://localhost:8888/api/v1/cart/generate_uuid').then(function (response){
-            $scope.cart_uuid = response.data;
-        })
-    }
+    // $scope.createCart = function (){
+    //     $http.get('http://localhost:8888/api/v1/cart/generate_uuid').then(function (response){
+    //         $scope.cart_uuid = response.data;
+    //     })
+    // }
     $scope.addToCart = function (productId) {
-        $http.get('http://localhost:8888/api/v1/cart/5c14f3ec-9eb0-43ca-a4ff-25c549c00836/add/' + productId).then(function (response) {
+        $http.get('http://localhost:8888/api/v1/cart/' + '$scope.cart_uuid' + '/add/' + productId).then(function (response) {
             $scope.productInCart = response.data;
         });
     }
