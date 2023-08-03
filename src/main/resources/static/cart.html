@@ -69,7 +69,7 @@
                 {{i.quantity}}
                 <button type="button" class="btn-secondary" ng-click="incrementProductIdCart(i.productId)"> +</button>
             </td>
-            <td>{{i.pricePerProduct + ' x ' + i.quantity + ' = ' + (i.price * i.quantity)}}</td>
+            <td>{{i.pricePerProduct + ' x ' + i.quantity + ' = ' + (i.pricePerProduct * i.quantity)}}</td>
             <td>
                 <button type="button" class="btn-danger" ng-click="deleteProductInCart(i.productId)">Удалить</button>
             </td>

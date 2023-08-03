@@ -29,7 +29,7 @@
             <a class="nav-link disabled" href="#">Заказы</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link disabled" href="#">Админ панель</a>
+            <a class="nav-link " href="http://localhost:8888/adm.html">Админ панель</a>
         </li>
     </ul>
 
@@ -41,6 +41,9 @@
             </td>
             <td>
                 <button type="button" class="btn btn-primary" onclick="document.location='http://localhost:8888/auth.html'">Вход</button>
+            </td>
+            <td>
+                <button type="submit" class="btn btn-primary" ng-click="logout()">Выйти</button>
             </td>
         </tr>
     </table>
