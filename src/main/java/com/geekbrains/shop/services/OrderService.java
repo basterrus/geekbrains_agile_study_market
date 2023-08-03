@@ -35,20 +35,18 @@ public class OrderService {
     }
 
     @Transactional
-    public void createOrder(String uuid) {
+    public void createOrder(String username, String uuid) {
         Order order = new Order();
-        BigDecimal price = new BigDecimal(0);
         List<Product> productsInOrder = new ArrayList<>();
         CartDto cartDto = cartConverter.entityToDto(cartService.getCurrentCart(uuid));
         List<CartItemDto> cartItems = cartDto.getItems();
         for (CartItemDto cartItem : cartItems) {
-            price.add(cartItem.getPricePerProduct());
-            for (int i = 0; i < cartItem.getQuantity(); i++) {
+            for (int i =0; i < cartItem.getQuantity(); i++) {
                 productsInOrder.add(productService.findProductById(cartItem.getProductId()).get());
             }
         }
-        order.setUuid(uuid);
-        order.setPrice(price);
+        order.setUsername(username);
+        order.setPrice(cartDto.getTotalPrice());
         order.setProducts(productsInOrder);
         cartService.clear(uuid);
         orderRepository.save(order);
@@ -73,8 +71,8 @@ public class OrderService {
         return products;
     }
 
-    public List<Order> getOrdersByUuid(String uuid){
-        return orderRepository.findOrdersByUuid(uuid);
+    public List<Order> getOrdersByUsername(String username){
+        return orderRepository.findOrdersByUsername(username);
     }
 
 }

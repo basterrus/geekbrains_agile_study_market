@@ -21,8 +21,8 @@ public class Order {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "uuid")
-    private String uuid;
+    @Column(name = "username")
+    private String username;
 
     @Column(name = "price")
     private BigDecimal price;
