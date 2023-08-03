@@ -17,7 +17,6 @@ public class OrderConverter {
         OrderDto orderDto = new OrderDto();
         orderDto.setId(order.getId());
         orderDto.setPrice(order.getPrice());
-        orderDto.setUuid(order.getUuid());
         orderDto.setProductDtos(order.getProducts().stream().map(productConverter::entityToDto).collect(Collectors.toList()));
         return orderDto;
     }
