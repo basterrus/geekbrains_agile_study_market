@@ -7,6 +7,8 @@ import com.geekbrains.shop.dtos.user.UserRegisterResponse;
 import com.geekbrains.shop.entities.User;
 import com.geekbrains.shop.services.UserService;
 import com.geekbrains.shop.utils.JwtTokenUtil;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @PreAuthorize("hasRole('ROLE_ADMIN')")
 @Validated
+@SecurityRequirement(name = "Bearer Auth")
+@Tag(name = "Auth")
 public class UserController {
     private final UserService userService;
     private final UserConverter userConverter;

@@ -4,6 +4,8 @@ import com.geekbrains.shop.converters.OrderConverter;
 import com.geekbrains.shop.dtos.order.OrderDto;
 import com.geekbrains.shop.dtos.product.ProductDto;
 import com.geekbrains.shop.services.OrderService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,8 @@ import java.util.stream.Collectors;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/order")
+@SecurityRequirement(name = "Bearer Auth")
+@Tag(name = "Order")
 public class OrderController {
 
     private final OrderService orderService;
