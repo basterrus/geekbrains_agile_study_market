@@ -26,7 +26,7 @@
             <a class="nav-link active" href="http://localhost:8888/cart.html">Корзина</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link disabled" href="#">Заказы</a>
+            <a class="nav-link " href="http://localhost:8888/orders.html">Заказы</a>
         </li>
         <li class="nav-item">
             <a class="nav-link disabled" href="#">Админ панель</a>
@@ -80,7 +80,7 @@
             <td>{{cart.totalPrice}}</td>
             <td>
                 <button type="button" class="btn btn-danger" ng-click="cleanCart()">Очистить корзину</button>
-                <button type="button" class="btn btn-success" ng-click="">Оформить заказ</button>
+                <button type="button" class="btn btn-success" ng-click="createOrder()">Оформить заказ</button>
             </td>
         </tr>
         </tbody>
