@@ -7,7 +7,10 @@ angular.module('market', []).controller('indexController', function ($scope, $ht
     }
 
     $scope.addToCart = function (productId) {
-        $http.get('http://localhost:8888/api/v1/cart/' + (JSON.parse(localStorage.getItem("uuid")).value) + '/add/' + productId).then(function (response) {
+        $http.get('http://localhost:8888/api/v1/cart/' + (JSON.parse(localStorage.getItem("uuid")).value) + '/add/' + productId,{
+            headers: {
+                'Authorization': 'Bearer ' + (JSON.parse(localStorage.getItem("jwt")).data.token)
+            }}).then(function (response) {
             $scope.productInCart = response.data;
         });
     }
