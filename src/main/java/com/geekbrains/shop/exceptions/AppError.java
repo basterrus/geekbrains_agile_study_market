@@ -2,7 +2,7 @@ package com.geekbrains.shop.exceptions;
 
 public class AppError {
     private int statusCode;
-    private String message;
+    private Object message;
 
     public int getStatusCode() {
         return statusCode;
@@ -12,7 +12,7 @@ public class AppError {
         this.statusCode = statusCode;
     }
 
-    public String getMessage() {
+    public Object getMessage() {
         return message;
     }
 
@@ -23,7 +23,7 @@ public class AppError {
     public AppError() {
     }
 
-    public AppError(int statusCode, String message) {
+    public AppError(int statusCode, Object message) {
         this.statusCode = statusCode;
         this.message = message;
     }

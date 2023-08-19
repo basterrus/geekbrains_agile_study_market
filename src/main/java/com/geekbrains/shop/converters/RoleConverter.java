@@ -1,6 +1,6 @@
 package com.geekbrains.shop.converters;
 
-import com.geekbrains.shop.dtos.RoleDto;
+import com.geekbrains.shop.dtos.role.RoleDto;
 import com.geekbrains.shop.entities.Role;
 import org.springframework.stereotype.Component;
 

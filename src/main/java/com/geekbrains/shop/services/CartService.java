@@ -55,7 +55,7 @@ public class CartService {
     }
 
     public void mergeCart(String uuid, String targetUuid) {
-        if (redisTemplate.hasKey(getTargetUuid(uuid))) {
+        if (Boolean.TRUE.equals(redisTemplate.hasKey(getTargetUuid(uuid)))) {
             Cart guestCart = getCurrentCart(uuid);
             for (CartItem item : guestCart.getItems()) {
                 add(targetUuid, item.getProductId());

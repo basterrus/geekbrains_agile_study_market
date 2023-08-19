@@ -57,6 +57,6 @@ public class Cart {
         totalPrice = items.stream().map(CartItem::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add).setScale(2, RoundingMode.HALF_UP);
     }
     private CartItem mapToCartItem(Product product) {
-        return new CartItem(product.getId(), product.getTitle(), 1, product.getPrice(), product.getPrice());
+        return new CartItem(product.getId(), product.getTitle(), 1, BigDecimal.valueOf(product.getPrice()), BigDecimal.valueOf(product.getPrice()));
     }
 }

@@ -19,8 +19,8 @@ public class SecurityEndpoints {
     // permit_all
      static final String[] AUTH_WHITELIST_AUTH = {
             "/api/v1/unsecured/**",
-            "/api/v1/register/**",
-            "/api/v1/login/**"
+            "/api/v1/auth/**"
+
     };
 
     // permit_all
@@ -34,11 +34,11 @@ public class SecurityEndpoints {
     };
 
      static final String[] AUTH_WHITELIST_CARTS ={
-             "/api/v1/cart"
+             "/api/v1/cart/**"
      };
 
      static final String[] AUTH_WHITELIST_CATEGORIES ={
-             "/api/v1/categories"
+             "/api/v1/categories/**"
      };
 
 
